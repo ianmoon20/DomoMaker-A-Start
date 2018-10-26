@@ -1,15 +1,13 @@
 const requiresLogin = (req, res, next) => {
   if (!req.session.account) {
-    console.log('requiresLogin redirect');
-    // return res.redirect('/');
+    return res.redirect('/');
   }
   return next();
 };
 
 const requiresLogout = (req, res, next) => {
   if (req.session.account) {
-    console.log('requiresLogout redirect');
-    // return res.redirect('/maker');
+    return res.redirect('/maker');
   }
 
   return next();
@@ -17,8 +15,7 @@ const requiresLogout = (req, res, next) => {
 
 const requiresSecure = (req, res, next) => {
   if (req.header['x-forwarded-proto'] !== 'https') {
-    console.log('requiresSecure redirect');
-    // return res.redirect(`https://${req.hostname}${req.url}`);
+    return res.redirect(`https://${req.hostname}${req.url}`);
   }
   return next();
 };
