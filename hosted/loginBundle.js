@@ -72,7 +72,7 @@ var setup = function setup(csrf) {
     var loginButton = document.querySelector("#loginButton");
     var signupButton = document.querySelector("#signupButton");
 
-    signuButton.addEventListener("click", function (e) {
+    signButton.addEventListener("click", function (e) {
         e.preventDefault();
         createSignupWindow(csrf);
         return false;

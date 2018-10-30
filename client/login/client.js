@@ -60,7 +60,7 @@ const setup = (csrf) => {
     const loginButton = document.querySelector("#loginButton");
     const signupButton = document.querySelector("#signupButton");
     
-    signuButton.addEventListener("click", (e) => {
+    signButton.addEventListener("click", (e) => {
         e.preventDefault();
         createSignupWindow(csrf);
         return false;
