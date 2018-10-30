@@ -80,7 +80,7 @@ var DomoList = function DomoList(props) {
     );
 };
 
-loadDomosFromServer = function loadDomosFromServer() {
+var loadDomosFromServer = function loadDomosFromServer() {
     sendAjax('GET', '/getDomos', null, function (data) {
         ReactDOM.render(React.createElement(DomoList, { domos: data.domos }), document.querySelector("#domos"));
     });
