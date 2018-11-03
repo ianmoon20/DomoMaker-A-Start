@@ -1,5 +1,5 @@
 const StatsList = function(props) {
-    const date = `${props.stats.createdDate.getMonth()} ${props.stats.createdDate.getDate()} ${props.stats.createdDate.getHours()}:${props.stats.createdDate.getMinutes()}`;
+    const date = `${props.stats.createdDate.getFullYear()} ${props.stats.createdDate.getMonth()} ${props.stats.createdDate.getDate()} ${props.stats.createdDate.getHours()}:${props.stats.createdDate.getMinutes()}`;
     return (
         <div className="statList">
             <div key={props.stats._id} className="stat">
