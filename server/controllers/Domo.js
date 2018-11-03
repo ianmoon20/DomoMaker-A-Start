@@ -18,7 +18,7 @@ const makeDomo = (req, res) => {
     return res.status(400).json({ error: 'RAWR! Name, age, and level are required' });
   }
 if (req.body.level < 1 || req.body.level > 100) {
-    return res.status(400).json({ error: 'RAWR! Level must be above 1 and below 100' });
+    return res.status(400).json({ error: 'RAWR! Level must be within range! (1-100)' });
   }
   const domoData = {
     name: req.body.name,

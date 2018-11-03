@@ -2,38 +2,34 @@
 
 var StatsList = function StatsList(props) {
     console.log(props);
-    var statNodes = props.stats.map(function (stat) {
-        return React.createElement(
+    return React.createElement(
+        "div",
+        { className: "statList" },
+        React.createElement(
             "div",
             { key: stat._id, className: "stat" },
             React.createElement(
                 "h3",
                 { className: "statName" },
                 "User: ",
-                stat.username,
+                props.stats.username,
                 " "
             ),
             React.createElement(
                 "h3",
                 { className: "statAge" },
                 " Created At: ",
-                stat.createdDate,
+                props.stats.createdDate,
                 " "
             ),
             React.createElement(
                 "h3",
                 { className: "statDomosCreated" },
                 " Domos Created: ",
-                stat.domosCreated,
+                props.stats.domosCreated,
                 " "
             )
-        );
-    });
-
-    return React.createElement(
-        "div",
-        { className: "statList" },
-        statNodes
+        )
     );
 };
 
