@@ -1,18 +1,12 @@
 const StatsList = function(props) {
     console.log(props);
-    const statNodes = props.stats.map(function(stat) {
-        return (
-            <div key={stat._id} className="stat">
-                <h3 className="statName">User: {stat.username} </h3>
-                <h3 className="statAge"> Created At: {stat.createdDate} </h3>
-                <h3 className="statDomosCreated"> Domos Created: {stat.domosCreated} </h3>
-            </div>
-        );
-    });
-    
     return (
         <div className="statList">
-            {statNodes}
+            <div key={stat._id} className="stat">
+                <h3 className="statName">User: {props.stats.username} </h3>
+                <h3 className="statAge"> Created At: {props.stats.createdDate} </h3>
+                <h3 className="statDomosCreated"> Domos Created: {props.stats.domosCreated} </h3>
+            </div>
         </div>
     );
 };
