@@ -101,7 +101,7 @@ var loadDomosFromServer = function loadDomosFromServer() {
 };
 
 var deleteDomoFromServer = function deleteDomoFromServer() {
-    sendAjax('DELETE', '/deleteDomo', null, function (data) {
+    sendAjax('POST', '/deleteDomo', null, function (data) {
         
     });
 };
