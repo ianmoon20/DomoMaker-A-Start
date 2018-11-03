@@ -106,6 +106,7 @@ $(document).ready(function () {
 "use strict";
 
 var StatsList = function StatsList(props) {
+    console.log(props);
     var statNodes = props.stats.map(function (stat) {
         return React.createElement(
             "div",

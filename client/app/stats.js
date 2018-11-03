@@ -1,4 +1,5 @@
 const StatsList = function(props) {
+    console.log(props);
     const statNodes = props.stats.map(function(stat) {
         return (
             <div key={stat._id} className="stat">
