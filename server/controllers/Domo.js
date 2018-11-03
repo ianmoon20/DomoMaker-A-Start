@@ -62,10 +62,12 @@ const makeDomo = (req, res) => {
 };
 
 const deleteDomo = (request, response) => {
+  console.log("We made it!");
+    console.log(request);
   const req = request;
   const res = response;
 
-  const domos = Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
+  return Domo.DomoModel.remove({ owner: req.session.account._id, name: req.params.name }, (err, docs) => {
     if (err) {
       console.log(err);
       return res.status(400).json({
@@ -73,10 +75,10 @@ const deleteDomo = (request, response) => {
       });
     }
 
-    return docs;
+    return res.json({
+      domos: docs,
+    });
   });
-
-  console.log(domos);
 };
 
 const getDomos = (request, response) => {

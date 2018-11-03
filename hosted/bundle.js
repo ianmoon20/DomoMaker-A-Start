@@ -102,7 +102,7 @@ var loadDomosFromServer = function loadDomosFromServer() {
 
 var deleteDomoFromServer = function deleteDomoFromServer() {
     sendAjax('DELETE', '/deleteDomo', null, function (data) {
-        ReactDOM.render(React.createElement(DomoList, { domos: data.domos }), document.querySelector("#domos"));
+        loadDomosFromServer();
     });
 };
 
