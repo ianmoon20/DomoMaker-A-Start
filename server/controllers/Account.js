@@ -13,15 +13,12 @@ const statsPage = (req, res) => {
 const getStats = (request, response) => {
   const req = request;
   const res = response;
-
-  console.log(req.session.account);
-  return Account.AccountModel.findByUsername(req.session.account.username, (err, docs) => {
-    if (err) {
-      console.log(err);
-      return res.status(400).json({ error: 'An error occurred' });
-    }
-
-    return res.json({ stats: docs });
+    
+    
+  return res.json({
+      username: req.session.account.username,
+      createdDate: req.session.account.createdDate,
+      domosCreated: req.session.account.domosCreated,
   });
 };
 
