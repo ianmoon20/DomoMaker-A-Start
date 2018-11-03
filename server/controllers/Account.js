@@ -13,13 +13,16 @@ const statsPage = (req, res) => {
 const getStats = (request, response) => {
   const req = request;
   const res = response;
-    
-    
-  return res.json({
-      username: req.session.account.username,
-      createdDate: req.session.account.createdDate,
-      domosCreated: req.session.account.domosCreated,
-  });
+
+  const stats = {
+    username: req.session.account.username,
+    createdDate: req.session.account.createdDate,
+    domosCreated: req.session.account.domosCreated,
+  };
+
+  console.log(stats);
+
+  return res.json({ stats });
 };
 
 const logout = (req, res) => {
