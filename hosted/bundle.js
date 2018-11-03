@@ -148,7 +148,7 @@ var loadDomosFromServer = function loadDomosFromServer() {
 };
 
 var setup = function setup(csrf) {
-    ReactDOM.render(React.createElement(StatList, { domos: [] }), document.querySelector("#domos"));
+    ReactDOM.render(React.createElement(StatsList, { domos: [] }), document.querySelector("#domos"));
 
     loadStatsFromServer();
 };

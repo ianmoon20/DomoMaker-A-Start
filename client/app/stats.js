@@ -26,7 +26,7 @@ const loadDomosFromServer = () => {
 
 const setup = function(csrf) {
     ReactDOM.render(
-        <StatList domos={[]} />, document.querySelector("#domos")
+        <StatsList domos={[]} />, document.querySelector("#domos")
     );
     
     loadStatsFromServer();
