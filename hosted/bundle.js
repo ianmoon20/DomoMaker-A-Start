@@ -1,23 +1,86 @@
 "use strict";
 
-var StatList = function StatList(props) {
-    var statNodes = props.stats.map(function (stat) {
+var handleDomo = function handleDomo(e) {
+    e.preventDefault();
+
+    $("#domoMessage").animate({ width: 'hide' }, 350);
+
+    if ($("#domoName").val() == '' || $("#domoAge").val() == '' || $("#domoLevel").val() == '') {
+        handleError("RAWR! All fields are required");
+        return false;
+    }
+
+    sendAjax('POST', $("#domoForm").attr("action"), $("#domoForm").serialize(), function () {
+        loadDomosFromServer();
+    });
+
+    return false;
+};
+
+var DomoForm = function DomoForm(props) {
+    return React.createElement(
+        "form",
+        { id: "domoForm", onSubmit: handleDomo, name: "domoForm", action: "/maker", method: "POST", className: "domoForm" },
+        React.createElement(
+            "label",
+            { htmlFor: "name" },
+            "Name: "
+        ),
+        React.createElement("input", { id: "domoName", type: "text", name: "name", placeholder: "Domo Name" }),
+        React.createElement(
+            "label",
+            { htmlFor: "age" },
+            "Age: "
+        ),
+        React.createElement("input", { id: "domoAge", type: "text", name: "age", placeholder: "Domo Age" }),
+        React.createElement(
+            "label",
+            { htmlFor: "level" },
+            "Level: "
+        ),
+        React.createElement("input", { id: "domoLevel", type: "text", name: "level", placeholder: "Domo Level (1-100)" }),
+        React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
+        React.createElement("input", { className: "makeDomoSubmit", type: "submit", value: "Make Domo" })
+    );
+};
+
+var DomoList = function DomoList(props) {
+    if (props.domos.length === 0) {
         return React.createElement(
             "div",
-            { key: account._id, className: "domo" },
+            { className: "domoList" },
+            React.createElement(
+                "h3",
+                { className: "emptyDomo" },
+                "No Domos Yet"
+            )
+        );
+    }
+
+    var domoNodes = props.domos.map(function (domo) {
+        return React.createElement(
+            "div",
+            { key: domo._id, className: "domo" },
             React.createElement("img", { src: "/assets/img/domoface.jpeg", alt: "domo face", className: "domoFace" }),
             React.createElement(
                 "h3",
-                { className: "accountDomos" },
-                "Domos Created: ",
-                stat.domoCreated,
+                { className: "domoName" },
+                "Name: ",
+                domo.name,
                 " "
             ),
             React.createElement(
                 "h3",
-                { className: "accountAge" },
-                " Member Since: ",
-                stat.createdDate,
+                { className: "domoAge" },
+                " Age: ",
+                domo.age,
+                " "
+            ),
+            React.createElement(
+                "h3",
+                { className: "domoLevel" },
+                " Level: ",
+                domo.level,
                 " "
             )
         );
@@ -25,14 +88,14 @@ var StatList = function StatList(props) {
 
     return React.createElement(
         "div",
-        { className: "statList" },
+        { className: "domoList" },
         domoNodes
     );
 };
 
-var loadStatsFromServer = function loadStatsFromServer() {
-    sendAjax('GET', '/getStats', null, function (data) {
-        ReactDOM.render(React.createElement(StatList, { stats: data.stats }), document.querySelector("#stat"));
+var loadDomosFromServer = function loadDomosFromServer() {
+    sendAjax('GET', '/getDomos', null, function (data) {
+        ReactDOM.render(React.createElement(DomoList, { domos: data.domos }), document.querySelector("#domos"));
     });
 };
 
