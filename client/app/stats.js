@@ -38,7 +38,3 @@ const getToken = () => {
         setup(result.csrfToken);
     });
 };
-
-$(document).ready(function() {
-    getToken();
-});
