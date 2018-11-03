@@ -1,6 +1,7 @@
 const models = require('../models');
 
 const Domo = models.Domo;
+const Account = models.Account;
 
 const makerPage = (req, res) => {
   Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
@@ -40,6 +41,15 @@ if (req.body.level < 1 || req.body.level > 100) {
     }
     return res.status(400).json({ error: 'An error occured' });
   });
+    
+  Account.update(
+    { name: req.session.account.username },
+    {
+        $set: {
+            createdDomos: req.session.account.createdDomos + 1,  
+        }
+    }
+  );
 
   return domoPromise;
 };
