@@ -17,17 +17,17 @@ const StatsList = function(props) {
     );
 };
 
-const loadDomosFromServer = () => {
+const loadStatsFromServer = () => {
     sendAjax('GET', '/getStats', null, (data) => {
         ReactDOM.render(
-            <DomoList domos={data.domos} />, document.querySelector("#stats")
+            <StatList stats={data.stats} />, document.querySelector("#stats")
         );
     });
 };
 
 const setup = function(csrf) {
     ReactDOM.render(
-        <StatsList domos={[]} />, document.querySelector("#domos")
+        <StatsList stats={[]} />, document.querySelector("#stats")
     );
     
     loadStatsFromServer();

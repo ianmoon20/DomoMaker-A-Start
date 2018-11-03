@@ -142,14 +142,14 @@ var StatsList = function StatsList(props) {
     );
 };
 
-var loadDomosFromServer = function loadDomosFromServer() {
+var loadStatsFromServer = function loadStatsFromServer() {
     sendAjax('GET', '/getStats', null, function (data) {
-        ReactDOM.render(React.createElement(DomoList, { domos: data.domos }), document.querySelector("#stats"));
+        ReactDOM.render(React.createElement(StatList, { stats: data.stats }), document.querySelector("#stats"));
     });
 };
 
 var setup = function setup(csrf) {
-    ReactDOM.render(React.createElement(StatsList, { domos: [] }), document.querySelector("#domos"));
+    ReactDOM.render(React.createElement(StatsList, { stats: [] }), document.querySelector("#stats"));
 
     loadStatsFromServer();
 };
