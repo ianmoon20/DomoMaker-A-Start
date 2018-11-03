@@ -105,6 +105,65 @@ $(document).ready(function () {
 });
 "use strict";
 
+var StatList = function StatList(props) {
+    var statNodes = props.stats.map(function (domo) {
+        return React.createElement(
+            "div",
+            { key: stat._id, className: "stat" },
+            React.createElement(
+                "h3",
+                { className: "statUsername" },
+                "Name: ",
+                stat.username,
+                " "
+            ),
+            React.createElement(
+                "h3",
+                { className: "statDomos" },
+                " Domos Created: ",
+                stats.domosCreated,
+                " "
+            ),
+            React.createElement(
+                "h3",
+                { className: "statCreation" },
+                " Member Since: ",
+                stats.createdDate,
+                " "
+            )
+        );
+    });
+
+    return React.createElement(
+        "div",
+        { className: "StatList" },
+        statNodes
+    );
+};
+
+var loadStatsFromServer = function loadStatsFromServer() {
+    sendAjax('GET', '/getStats', null, function (data) {
+        ReactDOM.render(React.createElement(StatList, { stat: data.stats }), document.querySelector("#stats"));
+    });
+};
+
+var setup = function setup(csrf) {
+    ReactDOM.render(React.createElement(StatList, { stats: [] }), document.querySelector("#stats"));
+
+    loadStatsFromServer();
+};
+
+var getToken = function getToken() {
+    sendAjax('GET', '/getToken', null, function (result) {
+        setup(result.csrfToken);
+    });
+};
+
+$(document).ready(function () {
+    getToken();
+});
+"use strict";
+
 var handleError = function handleError(message) {
     $("#errorMessage").text(message);
     $("#domoMessage").animate({ width: 'toggle' }, 350);
