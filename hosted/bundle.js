@@ -5,7 +5,7 @@ var handleDomo = function handleDomo(e) {
 
     $("#domoMessage").animate({ width: 'hide' }, 350);
 
-    if ($("#domoName").val() == '' || $("#domoAge").val() == '') {
+    if ($("#domoName").val() == '' || $("#domoAge").val() == '' || $("#domoLevel").val() == '') {
         handleError("RAWR! All fields are required");
         return false;
     }
@@ -15,49 +15,6 @@ var handleDomo = function handleDomo(e) {
     });
 
     return false;
-};
-
-var StatsList = function StatsList(props) {
-    console.log(props);
-    var statNodes = props.stats.map(function (stat) {
-        return React.createElement(
-            "div",
-            { key: stat._id, className: "stat" },
-            React.createElement(
-                "h3",
-                { className: "statName" },
-                "User: ",
-                stat.username,
-                " "
-            ),
-            React.createElement(
-                "h3",
-                { className: "statAge" },
-                " Created At: ",
-                stat.createdDate,
-                " "
-            ),
-            React.createElement(
-                "h3",
-                { className: "statDomosCreated" },
-                " Domos Created: ",
-                stat.domosCreated,
-                " "
-            )
-        );
-    });
-
-    return React.createElement(
-        "div",
-        { className: "statList" },
-        statNodes
-    );
-};
-
-var loadStatsFromServer = function loadStatsFromServer() {
-    sendAjax('GET', '/getStats', null, function (data) {
-        ReactDOM.render(React.createElement(StatList, { stats: data.stats }), document.querySelector("#stats"));
-    });
 };
 
 var DomoForm = function DomoForm(props) {
@@ -76,6 +33,12 @@ var DomoForm = function DomoForm(props) {
             "Age: "
         ),
         React.createElement("input", { id: "domoAge", type: "text", name: "age", placeholder: "Domo Age" }),
+        React.createElement(
+            "label",
+            { htmlFor: "level" },
+            "Level: "
+        ),
+        React.createElement("input", { id: "domoLevel", type: "text", name: "level", placeholder: "Domo Level (1-100)" }),
         React.createElement("input", { type: "hidden", name: "_csrf", value: props.csrf }),
         React.createElement("input", { className: "makeDomoSubmit", type: "submit", value: "Make Domo" })
     );
@@ -112,6 +75,13 @@ var DomoList = function DomoList(props) {
                 " Age: ",
                 domo.age,
                 " "
+            ),
+            React.createElement(
+                "h3",
+                { className: "domoLevel" },
+                " Level: ",
+                domo.level,
+                " "
             )
         );
     });
@@ -132,12 +102,9 @@ var loadDomosFromServer = function loadDomosFromServer() {
 var setup = function setup(csrf) {
     ReactDOM.render(React.createElement(DomoForm, { csrf: csrf }), document.querySelector("#makeDomo"));
 
-    ReactDOM.render(React.createElement(StatsList, { stats: [] }), document.querySelector("#stats"));
-
     ReactDOM.render(React.createElement(DomoList, { domos: [] }), document.querySelector("#domos"));
 
     loadDomosFromServer();
-    loadStatsFromServer();
 };
 
 var getToken = function getToken() {

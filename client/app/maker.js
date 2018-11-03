@@ -3,7 +3,7 @@ const handleDomo = (e) => {
     
     $("#domoMessage").animate({width:'hide'}, 350);
     
-    if($("#domoName").val() == '' || $("#domoAge").val() == '') {
+    if($("#domoName").val() == '' || $("#domoAge").val() == '' || $("#domoLevel").val() == '') {
         handleError("RAWR! All fields are required");
         return false;
     }
@@ -15,33 +15,6 @@ const handleDomo = (e) => {
     return false;
 };
 
-const StatsList = function(props) {
-    console.log(props);
-    const statNodes = props.stats.map(function(stat) {
-        return (
-            <div key={stat._id} className="stat">
-                <h3 className="statName">User: {stat.username} </h3>
-                <h3 className="statAge"> Created At: {stat.createdDate} </h3>
-                <h3 className="statDomosCreated"> Domos Created: {stat.domosCreated} </h3>
-            </div>
-        );
-    });
-    
-    return (
-        <div className="statList">
-            {statNodes}
-        </div>
-    );
-};
-
-const loadStatsFromServer = () => {
-    sendAjax('GET', '/getStats', null, (data) => {
-        ReactDOM.render(
-            <StatList stats={data.stats} />, document.querySelector("#stats")
-        );
-    });
-};
-
 const DomoForm = (props) => {
     return (
         <form id="domoForm" onSubmit={handleDomo} name="domoForm" action="/maker" method="POST" className="domoForm">
@@ -49,6 +22,8 @@ const DomoForm = (props) => {
             <input id="domoName" type="text" name="name" placeholder="Domo Name" />
             <label htmlFor="age">Age: </label>
             <input id="domoAge" type="text" name="age" placeholder="Domo Age" />
+            <label htmlFor="level">Level: </label>
+            <input id="domoLevel" type="text" name="level" placeholder="Domo Level (1-100)" />
             <input type="hidden" name="_csrf" value={props.csrf} />
             <input className="makeDomoSubmit" type="submit" value="Make Domo" />
         </form>
@@ -70,6 +45,7 @@ const DomoList = function(props) {
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
                 <h3 className="domoName">Name: {domo.name} </h3>
                 <h3 className="domoAge"> Age: {domo.age} </h3>
+                <h3 className="domoLevel"> Level: {domo.level} </h3>
             </div>
         );
     });
@@ -95,15 +71,10 @@ const setup = function(csrf) {
     );
     
     ReactDOM.render(
-        <StatsList stats={[]} />, document.querySelector("#stats")
-    );
-    
-    ReactDOM.render(
         <DomoList domos={[]} />, document.querySelector("#domos")
     );
     
     loadDomosFromServer();
-    loadStatsFromServer();
 };
 
 const getToken = () => {
