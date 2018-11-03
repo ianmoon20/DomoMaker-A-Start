@@ -7,7 +7,7 @@ var StatsList = function StatsList(props) {
         { className: "statList" },
         React.createElement(
             "div",
-            { key: stat._id, className: "stat" },
+            { key: prop.stats._id, className: "stat" },
             React.createElement(
                 "h3",
                 { className: "statName" },
