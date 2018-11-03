@@ -34,7 +34,7 @@ AccountSchema.statics.toAPI = doc => ({
   // _id is built into your mongo document and is guaranteed to be unique
   username: doc.username,
   createdDate: doc.createdDate,
-  domosCreated: doc.domosCreated,
+  domosCreated: new Date(doc.domosCreated),
   _id: doc._id,
 });
 
