@@ -20,13 +20,6 @@ var StatsList = function StatsList(props) {
                 " Created At: ",
                 props.stats.createdDate,
                 " "
-            ),
-            React.createElement(
-                "h3",
-                { className: "statDomosCreated" },
-                " Domos Created: ",
-                props.stats.domosCreated,
-                " "
             )
         )
     );

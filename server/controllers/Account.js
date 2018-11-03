@@ -17,7 +17,6 @@ const getStats = (request, response) => {
   const stats = {
     username: req.session.account.username,
     createdDate: req.session.account.createdDate,
-    domosCreated: req.session.account.domosCreated,
     _id: req.session.account._id,
   };
 

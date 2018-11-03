@@ -41,13 +41,6 @@ if (req.body.level < 1 || req.body.level > 100) {
     }
     return res.status(400).json({ error: 'An error occured' });
   });
-    
-  Account.update(
-      { name: req.session.account.username },
-      { $set: 
-       { createdDomos: req.session.account.createdDomos + 1,  }
-      }
-  )
 
   return domoPromise;
 };

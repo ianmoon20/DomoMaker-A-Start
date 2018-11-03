@@ -4,7 +4,6 @@ const StatsList = function(props) {
             <div key={props.stats._id} className="stat">
                 <h3 className="statName">User: {props.stats.username} </h3>
                 <h3 className="statAge"> Created At: {props.stats.createdDate} </h3>
-                <h3 className="statDomosCreated"> Domos Created: {props.stats.domosCreated} </h3>
             </div>
         </div>
     );
