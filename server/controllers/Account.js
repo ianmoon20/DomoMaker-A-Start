@@ -14,6 +14,7 @@ const getStats = (request, response) => {
   const req = request;
   const res = response;
 
+  console.log(req.session.account);
   return Account.AccountModel.findByUsername(req.session.account.username, (err, docs) => {
     if (err) {
       console.log(err);
