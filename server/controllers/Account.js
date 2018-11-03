@@ -105,6 +105,8 @@ const signup = (request, response) => {
 };
 
 module.exports.loginPage = loginPage;
+module.exports.statsPage = statsPage;
+module.exports.getStats = getStats;
 module.exports.login = login;
 module.exports.logout = logout;
 module.exports.signup = signup;
