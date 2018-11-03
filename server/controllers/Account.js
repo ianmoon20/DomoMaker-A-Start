@@ -6,31 +6,6 @@ const loginPage = (req, res) => {
   res.render('login', { csrfToken: req.csrfToken() });
 };
 
-const statsPage = (req, res) => {
-  Account.AccountModel.findByUsername(req.session.account._id, (err, docs) => {
-    if (err) {
-      console.log(err);
-      return res.status(400).json({ error: 'An error occured' });
-    }
-
-    return res.render('app', { csrfToken: req.csrfToken(), account: docs });
-  });
-};
-
-const getStats = (request, response) => {
-  const req = request;
-  const res = response;
-
-  return Account.AccountModel.findByUsername(req.session.account._id, (err, docs) => {
-    if (err) {
-      console.log(err);
-      return res.status(400).json({ error: 'An error occurred' });
-    }
-
-    return res.json({ stats: docs });
-  });
-};
-
 const logout = (req, res) => {
   req.session.destroy();
   res.redirect('/');
@@ -112,8 +87,8 @@ const signup = (request, response) => {
 };
 
 module.exports.loginPage = loginPage;
-module.exports.getStats = getStats;
 module.exports.login = login;
 module.exports.logout = logout;
 module.exports.signup = signup;
 module.exports.getToken = getToken;
+
