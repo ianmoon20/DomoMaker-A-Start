@@ -20,6 +20,7 @@ const getStats = (request, response) => {
       return res.status(400).json({ error: 'An error occurred' });
     }
 
+    console.log(docs);
     return res.json({ stats: docs });
   });
 };
