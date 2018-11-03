@@ -78,7 +78,7 @@ var DomoList = function DomoList(props) {
                 domo.level,
                 " "
             ),
-            React.createElement("button", { onClick: deleteDomoFromServer(), "Delete Domo"})
+            React.createElement("button", { onClick: deleteDomoFromServer(), "Delete Domo" })
         );
     });
 
