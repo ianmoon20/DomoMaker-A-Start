@@ -1,9 +1,10 @@
 const StatsList = function(props) {
+    const date = `${props.stats.createdDate.getMonth()} ${props.stats.createdDate.getDate()} ${props.stats.createdDate.getHours()}:${props.stats.createdDate.getMinutes()}`;
     return (
         <div className="statList">
             <div key={props.stats._id} className="stat">
                 <h3 className="statName">User: {props.stats.username} </h3>
-                <h3 className="statAge"> Created At: {props.stats.createdDate} </h3>
+                <h3 className="statAge"> Member Since: {date} </h3>
             </div>
         </div>
     );
