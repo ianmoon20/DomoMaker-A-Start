@@ -1,7 +1,7 @@
 const models = require('../models');
 
 const Domo = models.Domo;
-const Account = models.Account;    
+const Account = models.Account;
 
 const makerPage = (req, res) => {
   Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
@@ -42,7 +42,7 @@ const makeDomo = (req, res) => {
       doc.save();
   });
 
-  const domoPromise = newDomo.save(req.session.account._id, (err, docs)).update(;
+  const domoPromise = newDomo.save(req.session.account._id, (err, docs));
 
   domoPromise.then(() => res.json({
     redirect: '/maker',
