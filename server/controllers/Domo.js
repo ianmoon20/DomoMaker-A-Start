@@ -44,12 +44,8 @@ if (req.body.level < 1 || req.body.level > 100) {
     
   Account.update(
     { name: req.session.account.username },
-    {
-        $set: {
-            createdDomos: req.session.account.createdDomos + 1,  
-        }
-    }
-  );
+    { $set: { createdDomos: req.session.account.createdDomos + 1,  }
+  )
 
   return domoPromise;
 };
