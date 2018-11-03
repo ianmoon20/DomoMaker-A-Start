@@ -1,13 +1,12 @@
 "use strict";
 
 var StatsList = function StatsList(props) {
-    console.log(props);
     return React.createElement(
         "div",
         { className: "statList" },
         React.createElement(
             "div",
-            { key: prop.stats._id, className: "stat" },
+            { key: props.stats._id, className: "stat" },
             React.createElement(
                 "h3",
                 { className: "statName" },
