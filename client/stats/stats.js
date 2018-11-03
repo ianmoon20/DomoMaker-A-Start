@@ -20,7 +20,7 @@ const StatsList = function(props) {
 const loadStatsFromServer = () => {
     sendAjax('GET', '/getStats', null, (data) => {
         ReactDOM.render(
-            <StatList stats={data.stats} />, document.querySelector("#stats")
+            <StatsList stats={data.stats} />, document.querySelector("#stats")
         );
     });
 };
