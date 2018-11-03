@@ -19,6 +19,7 @@ const StatsList = function(props) {
 
 const loadStatsFromServer = () => {
     sendAjax('GET', '/getStats', null, (data) => {
+        console.log(data);
         ReactDOM.render(
             <StatsList stats={data.stats} />, document.querySelector("#stats")
         );

@@ -39,6 +39,7 @@ var StatsList = function StatsList(props) {
 
 var loadStatsFromServer = function loadStatsFromServer() {
     sendAjax('GET', '/getStats', null, function (data) {
+        console.log(data);
         ReactDOM.render(React.createElement(StatsList, { stats: data.stats }), document.querySelector("#stats"));
     });
 };
