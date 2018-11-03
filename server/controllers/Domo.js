@@ -76,7 +76,7 @@ const deleteDomo = (request, response) => {
         return docs;
     });
     
-    console.log(docs);
+    console.log(domos);
 };
 
 const getDomos = (request, response) => {
