@@ -105,30 +105,30 @@ $(document).ready(function () {
 });
 "use strict";
 
-var StatList = function StatList(props) {
-    var statNodes = props.stats.map(function (domo) {
+var StatsList = function StatsList(props) {
+    var statNodes = props.stats.map(function (stat) {
         return React.createElement(
             "div",
             { key: stat._id, className: "stat" },
             React.createElement(
                 "h3",
-                { className: "statUsername" },
-                "Name: ",
+                { className: "statName" },
+                "User: ",
                 stat.username,
                 " "
             ),
             React.createElement(
                 "h3",
-                { className: "statDomos" },
-                " Domos Created: ",
-                stats.domosCreated,
+                { className: "statAge" },
+                " Created At: ",
+                stat.createdDate,
                 " "
             ),
             React.createElement(
                 "h3",
-                { className: "statCreation" },
-                " Member Since: ",
-                stats.createdDate,
+                { className: "statDomosCreated" },
+                " Domos Created: ",
+                stat.domosCreated,
                 " "
             )
         );
@@ -136,19 +136,19 @@ var StatList = function StatList(props) {
 
     return React.createElement(
         "div",
-        { className: "StatList" },
+        { className: "statList" },
         statNodes
     );
 };
 
-var loadStatsFromServer = function loadStatsFromServer() {
+var loadDomosFromServer = function loadDomosFromServer() {
     sendAjax('GET', '/getStats', null, function (data) {
-        ReactDOM.render(React.createElement(StatList, { stat: data.stats }), document.querySelector("#stats"));
+        ReactDOM.render(React.createElement(DomoList, { domos: data.domos }), document.querySelector("#stats"));
     });
 };
 
 var setup = function setup(csrf) {
-    ReactDOM.render(React.createElement(StatList, { stats: [] }), document.querySelector("#stats"));
+    ReactDOM.render(React.createElement(StatList, { domos: [] }), document.querySelector("#domos"));
 
     loadStatsFromServer();
 };
