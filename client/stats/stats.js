@@ -4,7 +4,7 @@ const StatsList = function(props) {
         <div className="statList">
             <div key={props.stats._id} className="stat">
                 <h3 className="statName">User: {props.stats.username} </h3>
-                <h3 className="statAge"> Member Since: {createdDate.getFullYear()} {createdDate.getDate()}</h3>
+                <h3 className="statAge"> Member Since: {createdDate.getMonth()} {createdDate.getDate()} {createdDate.getFullYear()}</h3>
             </div>
         </div>
     );

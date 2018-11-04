@@ -19,9 +19,11 @@ var StatsList = function StatsList(props) {
                 "h3",
                 { className: "statAge" },
                 " Member Since: ",
-                createdDate.getFullYear(),
+                createdDate.getMonth(),
                 " ",
-                createdDate.getDate()
+                createdDate.getDate(),
+                " ",
+                createdDate.getFullYear()
             )
         )
     );
