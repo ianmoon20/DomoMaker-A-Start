@@ -20,9 +20,9 @@ var StatsList = function StatsList(props) {
                 { className: "statAge" },
                 " Member Since: ",
                 createdDate.getMonth(),
-                " ",
+                "/",
                 createdDate.getDate(),
-                " ",
+                "/",
                 createdDate.getFullYear()
             )
         )
