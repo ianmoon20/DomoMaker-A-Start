@@ -1,7 +1,6 @@
 const models = require('../models');
 
 const Domo = models.Domo;
-const Account = models.Account;
 
 const makerPage = (req, res) => {
   Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
@@ -18,7 +17,7 @@ const makeDomo = (req, res) => {
   if (!req.body.name || !req.body.age || !req.body.level) {
     return res.status(400).json({ error: 'RAWR! Name, age, and level are required' });
   }
-if (req.body.level < 1 || req.body.level > 100) {
+  if (req.body.level < 1 || req.body.level > 100) {
     return res.status(400).json({ error: 'RAWR! Level must be within range! (1-100)' });
   }
   const domoData = {
