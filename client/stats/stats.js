@@ -1,10 +1,10 @@
 const StatsList = function(props) {
-    console.log(props.stats.createdDate.getFullYear());
+    const createdDate = new Date(props.stats.createdDate);
     return (
         <div className="statList">
             <div key={props.stats._id} className="stat">
                 <h3 className="statName">User: {props.stats.username} </h3>
-                <h3 className="statAge"> Member Since: {props.stats.createdDate.getFullYear()} {props.stats.createdDate.getDate()}</h3>
+                <h3 className="statAge"> Member Since: {createdDate.getFullYear()} {createdDate.getDate()}</h3>
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 "use strict";
 
 var StatsList = function StatsList(props) {
-    console.log(props.stats.createdDate.getFullYear());
+    var createdDate = new Date(props.stats.createdDate);
     return React.createElement(
         "div",
         { className: "statList" },
@@ -19,9 +19,9 @@ var StatsList = function StatsList(props) {
                 "h3",
                 { className: "statAge" },
                 " Member Since: ",
-                props.stats.createdDate.getFullYear(),
+                createdDate.getFullYear(),
                 " ",
-                props.stats.createdDate.getDate()
+                createdDate.getDate()
             )
         )
     );
